@@ -9,22 +9,68 @@ $(document).ready( function() {
 
 	paper.setup(canvas);
 
-	let braille = { marginX: 20, marginY: 20, sizeX: 210/2, sizeY: 297/2, letterWidth: 2.54, dotRadius: 1.25, letterPadding: 3.75, linePadding: 5.3, downPosition: -2.5, upPosition: 10, speed: 5000, delta: false, language: "6 dots" };
+	let braille = { marginX: 20, marginY: 20, sizeX: 170, sizeY: 125, letterWidth: 2.54, dotRadius: 1.25, letterPadding: 3.75, linePadding: 5.3, downPosition: -2.0, upPosition: 10, speed: 5000, delta: false, language: "6 dots" };
 
-	let pixelMillimeterRatio = null
+	let pixelMillimeterRatio = null;
 
-	let text = ''
-	let gcode = ''
+	let text = '';
+	let gcode = '';
 
 	let upPosition = braille.upPosition;
-	let downPosition = braille.downPosition
+	let downPosition = braille.downPosition;
+
+	let dot6Map = {
+		0: {
+			0: 1,
+			1: 2, 
+			2: 3
+		},
+		1: {
+			0: 4,
+			1: 5,
+			2: 6
+		}
+	}
+
+	let oldDot8Map = {
+		0: {
+			0: 1,
+			1: 2, 
+			2: 3,
+			3: 7
+		},
+		1: {
+			0: 4,
+			1: 5,
+			2: 6,
+			3: 8
+		}
+	}
+
+	let newDot8Map = {
+		0: {
+			0: 4,
+			1: 3, 
+			2: 2,
+			3: 1
+		},
+		1: {
+			0: 5,
+			1: 6,
+			2: 7,
+			3: 8
+		}
+	}
 
 	function replaceAt(s, n, t) {
 	    return s.substring(0, n) + t + s.substring(n + 1);
 	}
 
+	let latinToBrail = new Map();
+	let dotMap = null;
+
 	let brailleToGCode = function() {
-		
+		let is8dot = braille.language.indexOf("8 dots") >= 0
 		let sizeX = braille.sizeX;
 		let sizeY = braille.sizeY;
 
@@ -64,7 +110,7 @@ $(document).ready( function() {
 			let charIsLineBreak = /\r?\n|\r/.test(char)
 			
 			if(charIsLineBreak) {
-				currentY += 2 * letterWidth + braille.linePadding;
+				currentY += (is8dot ? 2 : 3) * letterWidth + braille.linePadding;
 				currentX = braille.marginX;
 				continue;
 			}
@@ -88,21 +134,23 @@ $(document).ready( function() {
 			}
 
 			let gx = braille.sizeX - currentX;
-			let gy = currentY;
+			let gy = -currentY;
 
 			if(braille.delta) {
 				gx -= braille.sizeX / 2;
-				gy -= braille.sizeY / 2;
+				gy += braille.sizeY / 2;
+			} else {
+				gy += braille.sizeY;
 			}
 
-			gcode += 'G0 X' + gx + ' Y' + (-gy) + ';\r\n'
+			gcode += 'G0 X' + gx + ' Y' + gy + ';\r\n'
 
 			let charGroup = new Group();
 			
-			for(let y = 0 ; y < (braille.language == "8 dots" ? 4 : 3) ; y++) {
+			for(let y = 0 ; y < (is8dot ? 4 : 3) ; y++) {
 				for(let x = 0 ; x < 2 ; x++) {
 
-					if(indices.indexOf(x*3+y+1) != -1) {
+					if(indices.indexOf(dotMap[x][y]) != -1) {
 						let px = currentX + x * letterWidth
 						let py = currentY + y * letterWidth
 						let dot = new Path.Circle(new Point(px * pixelMillimeterRatio, py * pixelMillimeterRatio), (braille.dotRadius / 2) * pixelMillimeterRatio);
@@ -113,14 +161,16 @@ $(document).ready( function() {
 						if(x > 0 || y > 0) {
 
 							gx = braille.sizeX - px;
-							gy = py;
+							gy = -py;
 
 							if(braille.delta) {
 								gx -= braille.sizeX / 2;
-								gy -= braille.sizeY / 2;
+								gy += braille.sizeY / 2;
+							} else {
+								gy += braille.sizeY;
 							}
 
-							gcode += 'G0 X' + gx + ' Y' + (-gy) + ';\r\n'
+							gcode += 'G0 X' + gx + ' Y' + gy + ';\r\n'
 						}
 						
 						gcode += 'G0 Z' + downPosition + ';\r\n'
@@ -133,7 +183,7 @@ $(document).ready( function() {
 
 			// Check that we can draw the next letter:
 			if(currentX + braille.letterWidth + braille.dotRadius > braille.sizeX - braille.marginX) {
-				currentY += 2 * letterWidth + braille.linePadding;
+				currentY += (is8dot ? 2 : 3) * letterWidth + braille.linePadding;
 				currentX = braille.marginX;
 			}
 		}
@@ -144,9 +194,14 @@ $(document).ready( function() {
 
 	brailleToGCode()
 
-	let latinToBrail = new Map();
-
 	function initializeLatinToBraille() {
+
+		dotMap = braille.language == "6 dots" ? dot6Map : braille.language == "old 8 dots" ? oldDot8Map : braille.language == "new 8 dots" ? newDot8Map : null
+		
+		if(dotMap == null) {
+			throw new Error('Dot eight map.')
+		}
+
 		// Read in braille description file
 		// latinToBrail.set('a', [1, 2]);
 		// latinToBrail.set('b', [1, 4, 5]);
@@ -185,7 +240,7 @@ $(document).ready( function() {
 
 	createController('delta');
 
-	createController('language', ["6 dots", "8 dots"], null, function() {
+	createController('language', ["6 dots", "new 8 dots", "old 8 dots"], null, function() {
 		initializeLatinToBraille();
 		brailleToGCode();
 	});

@@ -62,12 +62,16 @@ $(document).ready( function() {
 		}
 	}
 
+	let numberPrefix6 = [6]
+	let numberPrefix8 = [4, 5, 7, 8]
+
 	function replaceAt(s, n, t) {
 	    return s.substring(0, n) + t + s.substring(n + 1);
 	}
 
 	let latinToBrail = new Map();
 	let dotMap = null;
+	let numberPrefix = null;
 
 	let brailleToGCode = function() {
 		let is8dot = braille.language.indexOf("8 dots") >= 0
@@ -123,7 +127,7 @@ $(document).ready( function() {
 			let indices = latinToBrail.get(char);
 
 			if(!isWritingNumber && !isNaN(parseInt(char))) { 			// if we are not in a number sequence and char is a number: add a 6 dot and enter number sequence
-				indices = [6];
+				indices = numberPrefix;
 				i--; 													// we will reread the same character
 				isWritingNumber = true;
 			} else if(isWritingNumber && char == ' ') {
@@ -196,12 +200,14 @@ $(document).ready( function() {
 	brailleToGCode()
 
 	function initializeLatinToBraille() {
+		numberPrefix = braille.language == "6 dots" ? numberPrefix6 : numberPrefix8
 
 		dotMap = braille.language == "6 dots" ? dot6Map : braille.language == "old 8 dots" ? oldDot8Map : braille.language == "new 8 dots" ? newDot8Map : null
 		
 		if(dotMap == null) {
 			throw new Error('Dot eight map.')
 		}
+
 
 		// Read in braille description file
 		// latinToBrail.set('a', [1, 2]);

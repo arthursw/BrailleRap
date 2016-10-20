@@ -1,60 +1,6 @@
 paper.install(window);
 
 $(document).ready( function() {
-	
-	let brailleJSON = {
-		"a": [1],
-		"b": [1,2],
-		"c": [1,4],
-		"d": [1,4,5],
-		"e": [1,5],
-		"f": [1,2,4],
-		"g": [1,2,4,5],
-		"h": [1,2,5],
-		"i": [2,4],
-		"j": [2,4,5],
-		"k": [1,3],
-		"l": [1,2,3],
-		"m": [1,3,4],
-		"n": [1,3,4,5],
-		"o": [1,3,5],
-		"p": [1,2,3,4],
-		"q": [1,2,3,4,5],
-		"r": [1,2,3,5],
-		"s": [2,3,4],
-		"t": [2,3,4,5],
-		"u": [1,3,6],
-		"v": [1,2,3,6],
-		"w": [2,4,5,6],
-		"x": [1,3,4,6],
-		"y": [1,3,4,5,6],
-		"z": [1,3,5,6],
-		" ": [],
-		".": [2,5,6],
-		",": [2],
-		"?": [2,6],
-		";": [2,3],
-		":": [2,4],
-		"!": [2,3,5],
-		"(": [2,3,6],
-		")": [3,5,6],
-		"'": [3],
-		"-": [3,6],
-		"/": [3,4],
-		"*": [3,5],
-		"+": [2,3,5],
-		"=": [2,3,5,6],
-		"0": [3, 4, 5, 6],
-		"1": [1, 6],
-		"2": [1, 2, 6],
-		"3": [1, 4, 6],
-		"4": [1, 4, 5, 6],
-		"5": [1, 5, 6],
-		"6": [1, 2, 4, 6],
-		"7": [1, 2, 4, 5, 6],
-		"8": [1, 2, 5, 6],
-		"9": [2, 4, 6]
-	};
 
 	let canvas = document.getElementById("paperCanvas")
 
@@ -63,20 +9,24 @@ $(document).ready( function() {
 
 	paper.setup(canvas);
 
-	let braille = { marginX: 20, marginY: 20, sizeX: 210/2, sizeY: 297/2, letterWidth: 2.54, dotRadius: 1.25, letterPadding: 3.75, linePadding: 5.3, downPosition: 1, upPosition: 10, speed: 4000 };
+	let braille = { marginX: 20, marginY: 20, sizeX: 210/2, sizeY: 297/2, letterWidth: 2.54, dotRadius: 1.25, letterPadding: 3.75, linePadding: 5.3, downPosition: -2.5, upPosition: 10, speed: 5000, delta: false, language: "6 dots" };
 
 	let pixelMillimeterRatio = null
 
 	let text = ''
 	let gcode = ''
 
-	let upPosition = 1
-	let downPosition = 0.2
+	let upPosition = braille.upPosition;
+	let downPosition = braille.downPosition
+
+	function replaceAt(s, n, t) {
+	    return s.substring(0, n) + t + s.substring(n + 1);
+	}
 
 	let brailleToGCode = function() {
 		
-		let sizeX = braille.sizeX
-		let sizeY = braille.sizeY
+		let sizeX = braille.sizeX;
+		let sizeY = braille.sizeY;
 
 		let canvasWidth = canvas.width / window.devicePixelRatio;
 		let canvasHeight = canvas.height / window.devicePixelRatio;
@@ -91,8 +41,9 @@ $(document).ready( function() {
 	
 		project.clear();
 
-		gcode = 'G90\n' // Set to Absolute Positioning
-		gcode += 'G0 Z' + upPosition + '\n'
+		gcode = 'G90;\r\n' // Set to Absolute Positioning
+		gcode += 'F ' + braille.speed + ';\r\n'
+		gcode += 'G0 Z' + upPosition + ';\r\n'
 
 		let currentX = braille.marginX;
 		let currentY = braille.marginY;
@@ -109,7 +60,16 @@ $(document).ready( function() {
 		for(let i = 0 ; i < text.length ; i++) {
 			let char = text[i]
 
-			if(!latinToBrail.has(char)) {
+			let charIsCapitalLetter = /[A-Z]/.test(char)
+			let charIsLineBreak = /\r?\n|\r/.test(char)
+			
+			if(charIsLineBreak) {
+				currentY += 2 * letterWidth + braille.linePadding;
+				currentX = braille.marginX;
+				continue;
+			}
+
+			if(!latinToBrail.has(char.toLowerCase())) {
 				throw new Error('Character ' + char + ' was not translated in braille.')	
 			}
 			
@@ -121,17 +81,26 @@ $(document).ready( function() {
 				isWritingNumber = true;
 			} else if(isWritingNumber && char == ' ') {
 				isWritingNumber = false;
-			} else if( /[A-Z]/.test(char)) { 							// if capital letter: add prefix
+			} else if( charIsCapitalLetter ) { 							// if capital letter: add prefix
 				indices = [4, 6];
+				text = replaceAt(text, i, text[i].toLowerCase());
 				i--;
 			}
 
-			gcode += 'G0 X' + currentY + ' Y' + (braille.sizeX - currentX) + '\n'
+			let gx = braille.sizeX - currentX;
+			let gy = currentY;
+
+			if(braille.delta) {
+				gx -= braille.sizeX / 2;
+				gy -= braille.sizeY / 2;
+			}
+
+			gcode += 'G0 X' + gx + ' Y' + (-gy) + ';\r\n'
 
 			let charGroup = new Group();
 			
-			for(let y=0 ; y<3 ; y++) {
-				for(let x=0 ; x<2 ; x++) {
+			for(let y = 0 ; y < (braille.language == "8 dots" ? 4 : 3) ; y++) {
+				for(let x = 0 ; x < 2 ; x++) {
 
 					if(indices.indexOf(x*3+y+1) != -1) {
 						let px = currentX + x * letterWidth
@@ -142,11 +111,20 @@ $(document).ready( function() {
 						charGroup.addChild(dot);
 
 						if(x > 0 || y > 0) {
-							gcode += 'G0 X' + (braille.sizeX - px) + ' Y' + py + '\n'
+
+							gx = braille.sizeX - px;
+							gy = py;
+
+							if(braille.delta) {
+								gx -= braille.sizeX / 2;
+								gy -= braille.sizeY / 2;
+							}
+
+							gcode += 'G0 X' + gx + ' Y' + (-gy) + ';\r\n'
 						}
 						
-						gcode += 'G0 Z' + downPosition + '\n'
-						gcode += 'G0 Z' + upPosition + '\n'
+						gcode += 'G0 Z' + downPosition + ';\r\n'
+						gcode += 'G0 Z' + upPosition + ';\r\n'
 					}
 				}
 			}
@@ -161,16 +139,33 @@ $(document).ready( function() {
 		}
 
 		$("#gcode").val(gcode)
+		console.log(gcode)
 	}
+
+	brailleToGCode()
+
+	let latinToBrail = new Map();
+
+	function initializeLatinToBraille() {
+		// Read in braille description file
+		// latinToBrail.set('a', [1, 2]);
+		// latinToBrail.set('b', [1, 4, 5]);
+		let brailleJSON = braille.language == "6 dots" ? braille6JSON : braille8JSON;
+		
+		for(let char in brailleJSON) {
+			latinToBrail.set(char, brailleJSON[char])
+		}
+	}
+	initializeLatinToBraille();
 
 	var gui = new dat.GUI();
 	
 	dat.GUI.toggleHide = () => {}
 
-	let createController = function(name, min, max) {
+	let createController = function(name, min, max, callback) {
 		let controller = gui.add(braille, name, min, max);
-		controller.onChange(brailleToGCode);
-		controller.onFinishChange(brailleToGCode);
+		controller.onChange(callback != null ? callback : brailleToGCode);
+		controller.onFinishChange(callback != null ? callback : brailleToGCode);
 	}
 
 	createController('marginX', 0, 100);
@@ -184,38 +179,36 @@ $(document).ready( function() {
 	createController('letterPadding', 1, 30);
 	createController('linePadding', 1, 30);
 
-	createController('downPosition', 0, 30);
-	createController('upPosition', 0, 30);
-	createController('speed', 0, 4000);
+	createController('downPosition', -10, 30);
+	createController('upPosition', -10, 30);
+	createController('speed', 0, 6000);
+
+	createController('delta');
+
+	createController('language', ["6 dots", "8 dots"], null, function() {
+		initializeLatinToBraille();
+		brailleToGCode();
+	});
 
 	gui.add({download: function(){
 		// const fileStream = streamSaver.createWriteStream('gcode.txt')
 		// const writer = fileStream.getWriter()
 		// const encoder = new TextEncoder()
 		// let data = gcode.repeat(1024)
-		// let uint8array = encoder.encode(data + "\n\n")
+		// let uint8array = encoder.encode(data + "\r\n\r\n")
 		// writer.write(uint8array)
 		// writer.close()
 
 		var a = document.body.appendChild(
 			document.createElement("a")
 		);
-		a.download = "gcode.txt";
-		a.href = "data:text/html," + gcode;
+		a.download = "braille.gcode";
+		a.href = encodeURI("data:text/plain;charset=utf-8," + gcode); // .replace(/([^\r])\n/g, "$1\r\n")
+
 		a.click(); // Trigger a click on the element
 		a.remove();
 
 	}}, 'download')
-
-	// Read in braille description file
-	let latinToBrail = new Map();
-
-	// latinToBrail.set('a', [1, 2]);
-	// latinToBrail.set('b', [1, 4, 5]);
-
-	for(let char in brailleJSON) {
-		latinToBrail.set(char, brailleJSON[char])
-	}
 
 	$('#latin').bind('input propertychange', function(event) {
 		text = $("#latin").val();

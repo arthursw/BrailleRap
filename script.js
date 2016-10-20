@@ -16,9 +16,6 @@ $(document).ready( function() {
 	let text = '';
 	let gcode = '';
 
-	let upPosition = braille.upPosition;
-	let downPosition = braille.downPosition;
-
 	let dot6Map = {
 		0: {
 			0: 1,
@@ -89,6 +86,9 @@ $(document).ready( function() {
 
 		let pixelMillimeterRatio = Math.min(canvasWidth / sizeX, canvasHeight / sizeY)
 	
+		let upPosition = braille.upPosition;
+		let downPosition = braille.downPosition;
+		
 		project.clear();
 
 		gcode = 'G90;\r\n' // Set to Absolute Positioning

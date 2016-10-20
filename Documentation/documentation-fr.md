@@ -1,3 +1,13 @@
+Braille*Rap*
+============
+
+Fabrikarium 2016 : MyHumanKit, Airbus Group 
+
+CC-By-SA
+
+FLOSS Manuals France, Simon Descarpentries
+
+[TOC]
 
 Introduction
 ===

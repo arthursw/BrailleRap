@@ -103,8 +103,9 @@ $(document).ready( function() {
 
 		let isWritingNumber = false;
 
-		for(let i = 0 ; i < text.length ; i++) {
-			let char = text[i]
+		let textCopy = '' + text
+		for(let i = 0 ; i < textCopy.length ; i++) {
+			let char = textCopy[i]
 
 			let charIsCapitalLetter = /[A-Z]/.test(char)
 			let charIsLineBreak = /\r?\n|\r/.test(char)
@@ -129,7 +130,7 @@ $(document).ready( function() {
 				isWritingNumber = false;
 			} else if( charIsCapitalLetter ) { 							// if capital letter: add prefix
 				indices = [4, 6];
-				text = replaceAt(text, i, text[i].toLowerCase());
+				textCopy = replaceAt(textCopy, i, textCopy[i].toLowerCase());
 				i--;
 			}
 

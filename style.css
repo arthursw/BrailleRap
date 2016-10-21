@@ -49,6 +49,7 @@ body {
 #gcode {
     width: 100%;
     min-height: 350px;
+    resize: vertical;
 }
 
 #output {

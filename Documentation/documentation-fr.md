@@ -60,7 +60,7 @@ FLOSS Manuals France, Simon Descarpentries
  </ul>
  </li>
  <li><a href="#vidéo-démo">Vidéo démo</a></li>
- <li><a href="#pistes-d-optimisation">Pistes d'optimisation</a></li>
+ <li><a href="#pistes-doptimisation">Pistes d'optimisation</a></li>
  <li><a href="#un-peu-dhumour">Un peu d'humour</a></li>
  <li><a href="#lexique">Lexique</a></li>
 </ul>
@@ -157,7 +157,8 @@ Malheureusement, l'artiste à l'origine de ce concept déplorait en 2012 qu'il s
 
 ### Braigo
 
-![Braigo, assemblage Lego Mindstorm imprimant du Braille](img/Braigo.jpg "") |
+<!-- ![Braigo, assemblage Lego Mindstorm imprimant du Braille](img/Braigo.jpg "") | -->
+<img src="img/Braigo.jpg" height="341" width="512" alt="Braigo, assemblage Lego Mindstorm imprimant du Braille]" /> |
 --- |
 *Braigo, assemblage Lego Mindstorm imprimant du Braille* |
 

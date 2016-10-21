@@ -1,4 +1,4 @@
-![Logo_BrailleRap](https://github.com/arthursw/BrailleRap/blob/master/Documentation/https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/logo_BrailleRap.png =743x360 "BrailleRap")
+![Logo_BrailleRap](https://github.com/arthursw/BrailleRap/blob/master/Logo/logo_BrailleRap.png =743x360 "BrailleRap")
 ===
 
 Fabrikarium 2016 : MyHumanKit, Airbus Group

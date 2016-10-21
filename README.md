@@ -4,7 +4,7 @@ Emboss Braille with a 3D printer!
 
 The [application](https://arthursw.github.io/BrailleRap/).
 
-The [documentation](blob/master/Documentation/documentation-fr.md) in french ([including a video demo](blob/master/Documentation/img/20161020_VIDEO_FABRIKARIUM_320.gif)).
+The [documentation](Documentation/documentation-fr.md) in french ([including a video demo](Documentation/img/20161020_VIDEO_FABRIKARIUM_320.gif)).
 
 
 ### Contribution

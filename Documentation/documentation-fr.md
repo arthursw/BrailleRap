@@ -59,6 +59,7 @@ FLOSS Manuals France, Simon Descarpentries
   <li><a href="#lancement-de-limpression">Lancement de l'impression</a></li>
  </ul>
  </li>
+ <li><a href="#vidéo-démo">Vidéo démo</a></li>
  <li><a href="#pistes-d-optimisation">Pistes d'optimisation</a></li>
  <li><a href="#un-peu-dhumour">Un peu d'humour</a></li>
  <li><a href="#lexique">Lexique</a></li>

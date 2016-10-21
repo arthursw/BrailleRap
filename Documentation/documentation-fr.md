@@ -1,5 +1,5 @@
-<!-- ![Logo_BrailleRap](https://github.com/arthursw/BrailleRap/blob/master/Logo/logo_BrailleRap.png =743x360 "BrailleRap")-->
-<h1><img src="https://github.com/arthursw/BrailleRap/blob/master/Logo/logo_BrailleRap.png" height="360" width="743" title="BrailleRap" alt="Logo_BrailleRap" /></h1>
+<!-- ![Logo_BrailleRap](../Logo/logo_BrailleRap.png =743x360 "BrailleRap")-->
+<h1><img src="../Logo/logo_BrailleRap.png" height="360" width="743" title="BrailleRap" alt="Logo_BrailleRap" /></h1>
 
 Fabrikarium 2016 : MyHumanKit, Airbus Group
 
@@ -117,7 +117,7 @@ Tour d'horizon de l'existant
 
 ### Braille e-Book
 
-![Modélisation du concept par Yanko Design](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/Braille_E-Book.jpg "Modélisation du concept par Yanko Design") |
+![Modélisation du concept par Yanko Design](img/Braille_E-Book.jpg "Modélisation du concept par Yanko Design") |
 --- |
 *Modélisation du concept par Yanko Design* |
 
@@ -125,7 +125,7 @@ Un livre numérique (ou e-Book) Braille, est une plage Braille autonome, capable
 
 ### Plage Braille
 
-![Exemple de plage Braille, la Tactis100](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/Plage-Braille.jpg "") |
+![Exemple de plage Braille, la Tactis100](img/Plage-Braille.jpg "") |
 --- |
 *Exemple de plage Braille, la Tactis100* |
 
@@ -135,8 +135,8 @@ En juillet 2015, le coréen Cheonan-Si a lancé son premier modèle de plage Bra
 
 ### Lumipocket 3D, une impression 3D plastic
 
-<!-- ![Modèle 3D d'une plaque Braille à imprimer](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/Lumi_3D_print.jpg =320x280 "") | -->
-<img src="https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/Lumi_3D_print.jpg" height="280" width="320" alt="Modèle 3D d'une plaque Braille à imprimer" /> |
+<!-- ![Modèle 3D d'une plaque Braille à imprimer](img/Lumi_3D_print.jpg =320x280 "") | -->
+<img src="img/Lumi_3D_print.jpg" height="280" width="320" alt="Modèle 3D d'une plaque Braille à imprimer" /> |
 --- |
 *Modèle 3D d'une plaque Braille à imprimer* |
 
@@ -146,7 +146,7 @@ Ce principe pose toutefois le problème de la quantité de matière première ut
 
 ### Impression de Braille sur papier, jusqu'ici une vision d'artiste
 
-![Imprimante télescopique à l'apparence attrayante](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/Printing_Braille_a_design.jpg "") |
+![Imprimante télescopique à l'apparence attrayante](img/Printing_Braille_a_design.jpg "") |
 --- |
 *Le concept d'imprimante et scanner Braille de SimCheong* |
 
@@ -156,7 +156,7 @@ Malheureusement, l'artiste à l'origine de ce concept déplorait en 2012 qu'il s
 
 ### Braigo
 
-![Braigo, assemblage Lego Mindstorm imprimant du Braille](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/Braigo.jpg "") |
+![Braigo, assemblage Lego Mindstorm imprimant du Braille](img/Braigo.jpg "") |
 --- |
 *Braigo, assemblage Lego Mindstorm imprimant du Braille* |
 
@@ -170,7 +170,7 @@ Le jeune inventeur travaille depuis sur de nouveaux modèles.
 
 ### Basic-D v4
 
-![Basic-D v4](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/Basic-D_v4.jp "") |
+![Basic-D v4](img/Basic-D_v4.jpg "") |
 --- |
 *Basic-D v4, exemple d'imprimante Braille du marché* |
 
@@ -180,7 +180,7 @@ Pour 2 495 USD, elle affiche une performance de 100 caractères par seconde.
 
 ### Plage Braille imprimée en 3D
 
-![BRAVE_COVE](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/BRAVE_COVE_1.jpg "") | ![BRAVE_COVE](img/BRAVE_COVE_2.jpg "") |
+![BRAVE_COVE](img/BRAVE_COVE_1.jpg "") ![BRAVE_COVE](img/BRAVE_COVE_2.jpg "") |
 --- |
 *Projets BRAVE et COVE, extraits de modèles de plage Braille imprimée* |
 
@@ -197,13 +197,9 @@ L'association Belge Braillepost se propose de jouer l'intermédiaire pour n'impo
 Rappel sur l'utilisation d'une tablette Braille
 ---
 
-<!--![Tablette d'écriture Braille traditionnelle, feuille, réglette et pointeau][tabBraille] |-->
-<img src="https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/IMG_20161019_140345.jpg" height="640" width="480" title="Tablette d'écriture Braille traditionnelle" alt="Tablette d'écriture Braille traditionnelle, feuille, réglette et pointeau" /> |
+<img src="img/IMG_20161019_140345.jpg" height="640" width="480" title="Tablette d'écriture Braille traditionnelle" alt="Tablette d'écriture Braille traditionnelle, feuille, réglette et pointeau" /> |
 --- |
 *Tablette d'écriture Braille traditionnelle, feuille, réglette et pointeau* |
-
-<!--[tabBraille]: https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/IMG_20161019_140345.jpg =480x640 "Tablette d'écriture Braille traditionnelle"-->
-
 
 Une tablette Braille traditionnelle est composée d'une plaque de métal pré-embossée de plusieurs lignes de caractères Braille, eux-mêmes composés de 3 lignes de 2 points, ou creux. La tablette est de plus équipée d'ergots pointus à intervalles réguliers sur le pourtour de la tablette.
 
@@ -238,8 +234,8 @@ On constate donc que la question traitée ici est une question de précision, l'
 Le Fabrikarium 2016
 ---
 
-<!-- ![Affiche du Fabrikarium de MyHumanKit et Airbus Group](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/couv-fabrikarium.jpeg =480x640 "Affiche du Fabrikarium de MyHumanKit et Airbus Group") | -->
-<img src="https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/couv-fabrikarium.jpeg" height="640" width="480" title="Affiche du Fabrikarium de MyHumanKit et Airbus Group" alt="Affiche du Fabrikarium de MyHumanKit et Airbus Group" /> |
+<!-- ![Affiche du Fabrikarium de MyHumanKit et Airbus Group](img/couv-fabrikarium.jpeg =480x640 "Affiche du Fabrikarium de MyHumanKit et Airbus Group") | -->
+<img src="img/couv-fabrikarium.jpeg" height="640" width="480" title="Affiche du Fabrikarium de MyHumanKit et Airbus Group" alt="Affiche du Fabrikarium de MyHumanKit et Airbus Group" /> |
 --- |
 *Affiche du Fabrikarium 2016* |
 
@@ -330,21 +326,21 @@ Une première idée, qui permet d'obtenir un embossage correct, est d'utiliser d
 L'embout adaptable
 ---
 
-<!--![Embout sur buse](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161021_093329.jpg =640x360 "Embout pointeau sur buse") |-->
-<img src="https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161021_093329.jpg" height="360" width="640" title="Embout pointeau sur buse" alt="Embout sur buse" /> |
+<!--![Embout sur buse](img/20161021_093329.jpg =640x360 "Embout pointeau sur buse") |-->
+<img src="img/20161021_093329.jpg" height="360" width="640" title="Embout pointeau sur buse" alt="Embout sur buse" /> |
 --- |
 *Embout pointeau monté sur buse d'imprimante 3D (delta)* |
 
 Pour travailler de manière plus pérenne, nous recommandons d'utiliser un embout, lui-même imprimé en 3D à partir des modèles fournis dans ce dépôt :
 
-- [Fichier OpenSCAD personnalisable](https://github.com/arthursw/BrailleRap/blob/master/Pointeau/Braille_buse.scad)
-- [Fichier STL imprimable pour buse à 6 pans de 10 mm](https://github.com/arthursw/BrailleRap/blob/master/Pointeau/couvre_buse_elodie_9.2.STL)
-- [Dessin industriel au format PDF](https://github.com/arthursw/BrailleRap/blob/master/Pointeau/Plan_couvre_buse_9.2.PDF)
+- [Fichier OpenSCAD personnalisable](../Pointeau/Braille_buse.scad)
+- [Fichier STL imprimable pour buse à 6 pans de 10 mm](../Pointeau/couvre_buse_elodie_9.2.STL)
+- [Dessin industriel au format PDF](../Pointeau/Plan_couvre_buse_9.2.PDF)
 
 L’idée a été d’adapter ou de copier le pointeau dont se servent les Braillistes, puis de le monter sur l’imprimante 3D pour qu’elle devienne « Brailliste » à son tour. Pour ce faire, nous nous sommes inspirés d’une tablette et d’un pointeau Braille standards.
 
-<!-- ![Embout_imprimé](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161021_093451.jpg =640x360 "Embout imprimé") | -->
-<img src="https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161021_093451.jpg" height="360" width="640" title="Embout imprimé" alt="Embout_imprimé" /> |
+<!-- ![Embout_imprimé](img/20161021_093451.jpg =640x360 "Embout imprimé") | -->
+<img src="img/20161021_093451.jpg" height="360" width="640" title="Embout imprimé" alt="Embout_imprimé" /> |
 --- |
 *Embout imprimé vu de 3/4 dessus* |
 
@@ -358,8 +354,8 @@ La pointe saillante doit toutefois être limée, pour être arrondie, afin de ne
 Supports d'embossages
 ---
 
-<!-- ![Nombreux_essais](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161020_141323.jpg =640x360 "Nombreux_essais") | -->
-<img src="https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161020_141323.jpg" height="360" width="640" title="Nombreux_essais" alt="Nombreux_essais" /> |
+<!-- ![Nombreux_essais](img/20161020_141323.jpg =640x360 "Nombreux_essais") | -->
+<img src="img/20161020_141323.jpg" height="360" width="640" title="Nombreux_essais" alt="Nombreux_essais" /> |
 --- |
 *"Tirs" d'essais d'embossage* |
 
@@ -418,12 +414,15 @@ Il est maintenant possible de lancer l'impression Braille, en validant votre ent
 
 Il est recommandé de maintenir la feuille à imprimer pour ne pas qu'elle se déplace pendant l'impression, mais attention aux doigts !
 
-<!-- ![Attention_aux_doigts](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161020_175141_.jpg =480x640 "Attention aux doigts !") | -->
-<img src="https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161020_175141_.jpg" height="640" width="480" title="Attention aux doigts !" alt="Attention_aux_doigts" /> |
+<!-- ![Attention_aux_doigts](img/20161020_175141_.jpg =480x640 "Attention aux doigts !") | -->
+<img src="img/20161020_175141_.jpg" height="640" width="480" title="Attention aux doigts !" alt="Attention_aux_doigts" /> |
 --- |
 *Lancement de l'impression, attention aux doigts !* |
 
-[Cliquer ici pour voir un GIF animé d'impression](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161020_VIDEO_FABRIKARIUM_320.gif).
+Vidéo démo
+===
+
+[Cliquer ici pour voir un GIF animé d'impression](img/20161020_VIDEO_FABRIKARIUM_320.gif).
 
 Pistes d'optimisation
 ===

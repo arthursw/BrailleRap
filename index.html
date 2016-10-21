@@ -12,22 +12,38 @@
     <!-- <script src="StreamSaver.js"></script> -->
     <!-- <script src="polyfill.min.js"></script> -->
     <link rel="stylesheet" href="style.css" />
+
+    <script>var languages = {}</script>
+    <script src="braille6.js"></script>
+    <script src="braille8old.js"></script>
+    <script src="braille8new.js"></script>
+
     <script src="script.js"></script>
 
-    <script src="braille6.js"></script>
+
 
   </head>
 
   <body>
     
     <h1>Braille Rap</h1>
+    
+    <p>Braille<em>Rap</em> est un projet visant &#224; &#233;crire du Braille sur papier &#224; l&#39;aide d&#39;une imprimante 3D.</p>
+
+    <p><a href="https://github.com/arthursw/BrailleRap/blob/master/Documentation/documentation-fr.md">Documentation</a></p>
+    <p><a href="https://github.com/arthursw/BrailleRap">Github repository</a></p>
+
     <div id="textareas">
       <textarea id='latin' placeholder="Enter your text."></textarea>
       <!-- <textarea id='braille'></textarea> -->
+      <div id="gui"></div>
     </div>
 
-    <canvas id="paperCanvas" resize hdpi></canvas>
-    <textarea id='gcode'></textarea>
+    <div id="output">
+      <canvas id="paperCanvas" resize hdpi></canvas>
+      <div id="gcode-container"><textarea id="gcode"></textarea></div>
+    </div>
+
   </body>
   
 

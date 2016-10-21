@@ -5,7 +5,7 @@ Fabrikarium 2016 : MyHumanKit, Airbus Group
 
 CC-By-SA
 
-FLOSS Manuals France, Simon Descarpentries
+[FLOSS Manuals France](https://flossmanuals.net), Simon Descarpentries
 
 <ul>
  <li><a href="#introduction">Introduction</a></li>

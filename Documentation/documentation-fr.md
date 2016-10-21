@@ -7,6 +7,7 @@ CC-By-SA
 
 FLOSS Manuals France, Simon Descarpentries
 
+* auto-gen TOC:
 {:toc}
 
 Introduction
@@ -360,7 +361,7 @@ Il est recommandé de maintenir la feuille à imprimer pour ne pas qu'elle se d�
 --- |
 *Lancement de l'impression, attention aux doigts !* |
 
-[Cliquer ici pour voir un GIF animé d'impression][https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161020_VIDEO_FABRIKARIUM_320.gif].
+[Cliquer ici pour voir un GIF animé d'impression](https://github.com/arthursw/BrailleRap/blob/master/Documentation/img/20161020_VIDEO_FABRIKARIUM_320.gif).
 
 Pistes d'optimisation
 ===

@@ -258,7 +258,7 @@ Braille*Rap* faisait partie de ces projets, et voici la liste des volontaires qu
 - **Yassine El Yacoubi**, BNP Paribas (pôle innovation, incubateur parisien startup)
 - **Élodie Fourment**, élève au Lycée Airbus
 
-  « *Ne doute pas de tes capacités, sous prétexte que tu ne sais pas ce que tu peux apporter à l'équipe* »
+  « *Ne doute pas de tes capacités sous prétexte que tu ne sais pas ce que tu peux apporter à l'équipe* »
 
 - **Arezki Gastaud**, danseur classique puis, élève ingénieur en informatique en alternance via CapGemini
 - **François Le Berre**, Airbus Safran (*Les Mureaux*), R&D surveillance de l'espace

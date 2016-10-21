@@ -12,7 +12,7 @@ FLOSS Manuals France, Simon Descarpentries
 Introduction
 ===
 
-Braille*Rap* est un projet visant écrire du Braille sur papier à l'aide d'une imprimante 3D. L'imprimante est ainsi utilisée pour creuser le relief des lettres Braille sur la feuille (et non construire des objets en plastique). Les lettres sont ainsi embossées point par point, à la vitesse de déplacement de la buse de l'imprimante utilisée comme pointeau, ce qui s'avère plus rapide et plus fiable que le travail d'un opérateur humain (même avec les machines les plus lentes).
+Braille*Rap* est un projet visant à écrire du Braille sur papier à l'aide d'une imprimante 3D. L'imprimante est ainsi utilisée pour creuser le relief des lettres Braille sur la feuille (et non construire des objets en plastique). Les lettres sont ainsi embossées point par point, à la vitesse de déplacement de la buse de l'imprimante utilisée comme pointeau, ce qui s'avère plus rapide et plus fiable que le travail d'un opérateur humain (même avec les machines les plus lentes).
 
 Pour ce faire, le texte à imprimer est d'abord saisi dans le logiciel Braille*Rap* qui le converti en Braille lisible à l'écran puis en instructions de pilotage des outils industriels à commande numérique, le G-Code. Ce G-Code est alors transmis à une imprimantes 3D libres, de la famille des RepRap. C'est d'ailleurs de ces machines de *rép*lication *rap*ide que le projet tire son nom !
 

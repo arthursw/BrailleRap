@@ -3,7 +3,7 @@
 
 Fabrikarium 2016 : [MyHumanKit](http://myhumankit.org/), Airbus Group
 
-CC-By-SA, [FLOSS Manuals](https://flossmanuals.net), Simon Descarpentries
+CC-By-SA -- [FLOSS Manuals](https://flossmanuals.net) -- Simon Descarpentries
 
 <ul>
  <li><a href="#introduction">Introduction</a></li>

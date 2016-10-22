@@ -1,11 +1,9 @@
 <!-- ![Logo_BrailleRap](../Logo/logo_BrailleRap.png =743x360 "BrailleRap")-->
 <h1><img src="../Logo/logo_BrailleRap.png" height="360" width="743" title="BrailleRap" alt="Logo_BrailleRap" /></h1>
 
-Fabrikarium 2016 : MyHumanKit, Airbus Group
+Fabrikarium 2016 : [MyHumanKit](http://myhumankit.org/), Airbus Group
 
-CC-By-SA
-
-[FLOSS Manuals France](https://flossmanuals.net), Simon Descarpentries
+CC-By-SA, [FLOSS Manuals](https://flossmanuals.net), Simon Descarpentries
 
 <ul>
  <li><a href="#introduction">Introduction</a></li>
@@ -241,12 +239,11 @@ Le Fabrikarium 2016
 --- |
 *Affiche du Fabrikarium 2016* |
 
-Du 19 au 21 octobre 2016, plus de 120 volontaires (bénévoles de l'association MyHumanKit, salariés d'Airbus Group et docsprinters de l'association FLOSS Manuals France), de divers ages et de parcours variés se sont réunis à Toulouse au Lycée Professionnel d'Airbus, afin de travailler sur les 11 projets proposés par MyHumanKit, au cours de l'évènement « Fabrikarium 2016 » organisé en collaboration et avec l'appui technique d'Airbus Group.
+Du 19 au 21 octobre 2016, plus de 120 volontaires (bénévoles de l'association MyHumanKit, salariés des sponsors et docsprinters de l'association FLOSS Manuals), d'ages et de parcours variés, se sont réunis à Toulouse au Lycée Professionnel d'Airbus, afin de travailler sur les 11 projets proposés par MyHumanKit, au cours de l'évènement « Fabrikarium 2016 », plus gros hackathon européen dédié aux handicaps.
 
-Braille*Rap* faisait partie de ces projets, et voici la liste des volontaires qui ont travaillé dessus :
+Braille*Rap* était l'un de ces projets, et voici la liste des volontaires qui ont travaillé dessus :
 
 ### Équipe du projet Braille*Rap*
-
 
 - **Hugues Aubin**, coordinateur MyHumanKit (depuis le 1er avril 2016)
 
@@ -256,12 +253,13 @@ Braille*Rap* faisait partie de ces projets, et voici la liste des volontaires qu
 - **Damien Canac**, équique Saint Gobain
 - **Simon Descarpentries**, ingénieur en informatique, gérant d'Acoeuro.com
 
-  Présent via l'association [FLOSS Manuals France](https://flossmanuals.net), en temps que docsprinter
+  Présent via l'association [FLOSS Manuals](https://flossmanuals.net), en temps que docsprinter
+
+  « *No looser in a winner team, no looser in a winner team…* »
 - **Yassine El Yacoubi**, BNP Paribas (pôle innovation, incubateur parisien startup)
 - **Élodie Fourment**, élève au Lycée Airbus
 
   « *Ne doute pas de tes capacités sous prétexte que tu ne sais pas ce que tu peux apporter à l'équipe* »
-
 - **Arezki Gastaud**, danseur classique puis, élève ingénieur en informatique en alternance via CapGemini
 - **François Le Berre**, Airbus Safran (*Les Mureaux*), R&D surveillance de l'espace
 
@@ -269,15 +267,13 @@ Braille*Rap* faisait partie de ces projets, et voici la liste des volontaires qu
 
   François est entre autre le garant des réalisations du projet de part sa maîtrise du Braille, acquise au début de ses études pour pallier son handicap visuel. De son propre aveu, il utilise peu le Braille au quotidien, si ce n'est pour vérifier de quelle boîte de médicament il se saisit…
 
-   François présentera le projet en décembre 2016 à la conférence *New technology* organisée par la [Fédération des Aveugles de France.](http://www.aveuglesdefrance.org/) à la Cité des Sciences de Paris.
-
+   François présentera le projet en décembre 2016 à la conférence *New technology* organisée par la [Fédération des Aveugles de France](http://www.aveuglesdefrance.org/) à la Cité des Sciences de Paris.
 - **Arthur Masson**, ingénieur en imagerie numérique
 
   Membre de l'association [Indiens dans la ville (IDLV)](http://idlv.tumblr.com/)
 - **Delphine Paillon**, Airbus bureau Group, Finance Community Manager au bureau du CFO, océanographe de formation, reconvertie en RH puis en Gestion des Compétences suite à un MBA en cours du soir et ardente défenseuse de l'intelligence collaborative.
 
-  « *Réaliser une idée, mais à plusieurs…* »
-
+  « *Tout seul on va plus vite, ensemble on va plus loin…* »
 - **Sébastien Rey**, Airbus, costing (études de coûts)
 
 Le logiciel Braille*Rap*

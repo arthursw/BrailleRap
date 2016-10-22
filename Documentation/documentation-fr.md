@@ -255,7 +255,7 @@ Braille*Rap* était l'un de ces projets, et voici la liste des volontaires qui o
 
   Présent via l'association [FLOSS Manuals](https://flossmanuals.net), en temps que docsprinter
 
-  « *No looser in a winner team, no looser in a winner team…* »
+  « *No looser in a winner team, no winner in a looser team…* »
 - **Yassine El Yacoubi**, BNP Paribas (pôle innovation, incubateur parisien startup)
 - **Élodie Fourment**, élève au Lycée Airbus
 

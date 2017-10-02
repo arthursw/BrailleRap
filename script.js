@@ -28,7 +28,7 @@ $(document).ready( function() {
 	}
 
 	let gcodeSetSpeed = function(speed) {
-		return 'F ' + speed + ';\r\n'
+		return 'G1 F' + speed + ';\r\n'
 	}
 
 	let gcodeTo = function(X, Y, Z) {

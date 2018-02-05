@@ -11,56 +11,56 @@ CC-By-SA - [FLOSS Manuals](https://flossmanuals.net) - Simon Descarpentries
  <ul>
   <li><a href="#Reprap">RepRaps</a></li>
   <li><a href="#Fablab">FabLabs</a></li>
-  <li><a href="#The-e-nable-network">e-Nable Networks</a></li>
-  <li><a href="#tour-dhorizon-de-lexistant">Overview of existing solutions</a>
+  <li><a href="#the-e-nable-network">e-Nable Networks</a></li>
+  <li><a href="#overview-of-existing-solutions">Overview of existing solutions</a>
   <ul>
    <li><a href="#braille-e-book">Braille e-Book</a></li>
-   <li><a href="#plage-braille">Braille boards</a></li>
-   <li><a href="#lumipocket-3D-une-impression-3D-plastic">Lumipocket 3D, 3D plastic printing</a></li>
-   <li><a href="#impression-de-braille-sur-papier-jusquici-une-vision-dartiste">Braille embossing, an artist vision</a></li>
+   <li><a href="#refreshable-braille-display">Braille boards</a></li>
+   <li><a href="#lumipocket-3D">Lumipocket 3D</a></li>
+   <li><a href="#print-braille-on-paper">Braille embossing</a></li>
    <li><a href="#braigo">Braigo</a></li>
    <li><a href="#basic-d-v4">Basic-D v4</a></li>
-   <li><a href="#plage-braille-imprimée-en-3d">Plage Braille imprimée en 3D</a></li>
-   <li><a href="#braillepost.be-et-les-cécogrammes">Braillepost.be et les cécogrammes</a></li>
+   <li><a href="#3d-printed-braille-board">3D printed Braille board</a></li>
+   <li><a href="#braillepost.be-and-the-cecograms">Braillepost.be and the cecograms</a></li>
   </ul>
   </li>
-  <li><a href="#rappel-sur-lutilisation-dune-tablette-braille">Rappel sur l'utilisation d'une tablette Braille</a>
+  <li><a href="#reminder-on-the-use-of-a-braille-tablet">Reminder on the use of a Braille tablet</a>
   <ul>
-   <li><a href="#profondeur-des-trous-du-braille">Profondeur des trous du Braille</a></li>
+   <li><a href="#depth-of-braille-holes">Depth of Braille holes</a></li>
   </ul>
   </li>
-  <li><a href="#le-fabrikarium-2016">Le Fabrikarium 2016</a>
+  <li><a href="#the-2016-fabrikarium">The 2016 Fabrikarium</a>
   <ul>
-   <li><a href="#Équipe-du-projet-braillerap">Équipe du projet Braille<em>Rap</em></a>
+   <li><a href="#braillerap-project-team">BrailleRap Project Team</a>
 </li>
   </ul>
   </li>
  </ul>
  </li>
- <li><a href="#le-logiciel-braillerap">Le logiciel Braille<em>Rap</em></a>
+ <li><a href="#braillerap-software">BrailleRap software<em>Rap</em></a>
  <ul>
-  <li><a href="#paramètres">Paramètres</a></li>
+  <li><a href="#settings">Settings</a></li>
  </ul>
  </li>
- <li><a href="#le-pointeau">Le pointeau</a>
+ <li><a href="#the-needle">The needle</a>
  <ul>
-  <li><a href="#la-bavure">La bavure</a></li>
-  <li><a href="#lembout-adaptable">L'embout adaptable</a></li>
-  <li><a href="#supports-dembossages">Supports d'embossages</a></li>
+  <li><a href="#the-burr">The burr</a></li>
+  <li><a href="#the-adaptable-tip">The adaptable tip</a></li>
+  <li><a href="#embossing-material">Embossing material</a></li>
  </ul>
  </li>
- <li><a href="#exemple-d-utilisation">Exemple d'utilisation</a>
+ <li><a href="#example-of-use">Example of use</a>
  <ul>
-  <li><a href="#préparation-de-limprimante-3d">Préparation de l'imprimante 3D</a></li>
-  <li><a href="#préparation-de-limpression">Préparation de l'impression</a></li>
-  <li><a href="#préparation-du-texte">Préparation du texte</a></li>
-  <li><a href="#lancement-de-limpression">Lancement de l'impression</a></li>
+  <li><a href="#preparing-the-3D-printer">Preparing the 3D printer</a></li>
+  <li><a href="#Preparing-the-printing">Preparing the printing</a></li>
+  <li><a href="#text-preparation">Text preparation</a></li>
+  <li><a href="#launch-of-printing">Launch of printing</a></li>
  </ul>
  </li>
- <li><a href="#vidéo-démo">Vidéo démo</a></li>
- <li><a href="#pistes-doptimisation">Pistes d'optimisation</a></li>
- <li><a href="#un-peu-dhumour">Un peu d'humour</a></li>
- <li><a href="#lexique">Lexique</a></li>
+ <li><a href="#demo-video">Demo video</a></li>
+ <li><a href="#optimizations">Optimisations</a></li>
+ <li><a href="#a-bit-of-humour">A bit of humour</a></li>
+ <li><a href="#lexicon">Lexicon</a></li>
 </ul>
 
 # Traduction Documentation BrailleRap
@@ -113,7 +113,7 @@ On October 24, 2014, a 5-year-old girl, born with an incomplete left hand, becam
 
 The Braille*Rap* project builds on this momentum and aims to provide, among other things, its thousands of volunteers with a fast, efficient and inexpensive way to print on demand large quantities of Braille around the world.
 
-Overview of the existing
+Overview of existing solutions
 ---
 
 ### Braille e-Book
@@ -134,7 +134,7 @@ A refreshable Braille display is an electromechanical device used by blind peopl
 
 In July 2015, Korea's Cheonan-Si launched its first 100-character Braille model, the Tactis100 (4 lines of 25 characters), which is up to the standards of a market focused on 20 to 80 character devices. The price of the Tactis100 is also presented by the manufacturer as an evolution of the market, with 2000 USD for 100 characters, against 7000 USD for 80 characters usually.
 
-### Lumipocket 3D, a 3D plastic printing
+### Lumipocket 3D
 
 <! -! [3D model of a Braille plate to print] (img/Lumi_3D_print.jpg=320x280 "") | ->
 <img src="img/Lumi_3D_print.jpg" height = "280" width = "320" alt = "3D model of a Braille plate to print" /> |
@@ -145,7 +145,7 @@ Lumi Industries has designed the Lumipocket DLP 3D, a small 3D printer, announce
 
 This principle, however, poses the problem of the amount of raw material used for the production of the printed plates.
 
-### Print Braille on paper, so far an artist's vision
+### Braille embossing
 
 ! [Attractive looking telescopic printer](img/Printing_Braille_a_design.jpg) |
 --- |
@@ -340,7 +340,7 @@ The other extremity of the cylinder is full, with the exception of a central hol
 The protruding tip must be filed, however, to be rounded, so as not to pierce the embossing paper.
 
 
-Embossing brackets
+Embossing material
 ---
 
 <! -! [Numerous_essents] (img / 20161020_141323.jpg = 640x360 "Numerous_essays") | ->
@@ -361,12 +361,12 @@ Overlaying a layer of felt on a layer of silicone resulted in good results.
 Example of use
 ===
 
-Preparation of the 3D printer
+Preparing the 3D printer
 ---
 
 Measure the hex nut of the extrusion nozzle to print a needle tip compatible with the intended printer (for example from our models).
 
-Preparation of printing
+Preparing the printing
 ---
 
 Provide a flexible but strong support to protect the tray (a glass in our case) from the printer.
@@ -410,7 +410,7 @@ Demo video
 
 [Click here to see an animated GIF print] (img / 20161020_VIDEO_FABRIKARIUM_320.gif).
 
-Optimization tracks
+Optimizations
 ===
 
 - Support extended Braille alphabets (4 lines of 2 points) in the software part;

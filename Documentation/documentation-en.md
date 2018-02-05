@@ -7,7 +7,7 @@ CC-By-SA - [FLOSS Manuals](https://flossmanuals.net) - Simon Descarpentries
 
 <ul>
  <li><a href="#introduction">Introduction</a></li>
- <li><a href="#contexte">Context</a>
+ <li><a href="#context">Context</a>
  <ul>
   <li><a href="#reprap">RepRaps</a></li>
   <li><a href="#fablab">FabLabs</a></li>
@@ -16,8 +16,8 @@ CC-By-SA - [FLOSS Manuals](https://flossmanuals.net) - Simon Descarpentries
   <ul>
    <li><a href="#braille-e-book">Braille e-Book</a></li>
    <li><a href="#refreshable-braille-display">Braille boards</a></li>
-   <li><a href="#lumipocket-3D">Lumipocket 3D</a></li>
-   <li><a href="#print-braille-on-paper">Braille embossing</a></li>
+   <li><a href="#lumipocket-3d">Lumipocket 3D</a></li>
+   <li><a href="#braille-embossing">Braille embossing</a></li>
    <li><a href="#braigo">Braigo</a></li>
    <li><a href="#basic-d-v4">Basic-D v4</a></li>
    <li><a href="#3d-printed-braille-board">3D printed Braille board</a></li>
@@ -244,7 +244,7 @@ From 19 to 21 October 2016, more than 120 volunteers (MyHumanKit volunteers, emp
 
 Braille*Rap* was one of these projects, and here is the list of volunteers who worked on it:
 
-### Braille Project Team * Rap *
+### Braille*Rap* Project Team
 
 - **Hugues Aubin**, coordinator MyHumanKit (since April 1st, 2016)
   - Project Leader Braille*Rap*

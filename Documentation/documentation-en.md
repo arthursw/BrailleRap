@@ -37,7 +37,7 @@ CC-By-SA - [FLOSS Manuals](https://flossmanuals.net) - Simon Descarpentries
   </li>
  </ul>
  </li>
- <li><a href="#braillerap-software">BrailleRap software<em>Rap</em></a>
+ <li><a href="#braillerap-software">BrailleRap software</a>
  <ul>
   <li><a href="#settings">Settings</a></li>
  </ul>
@@ -51,8 +51,8 @@ CC-By-SA - [FLOSS Manuals](https://flossmanuals.net) - Simon Descarpentries
  </li>
  <li><a href="#example-of-use">Example of use</a>
  <ul>
-  <li><a href="#preparing-the-3D-printer">Preparing the 3D printer</a></li>
-  <li><a href="#Preparing-the-printing">Preparing the printing</a></li>
+  <li><a href="#preparing-the-3d-printer">Preparing the 3D printer</a></li>
+  <li><a href="#preparing-the-printing">Preparing the printing</a></li>
   <li><a href="#text-preparation">Text preparation</a></li>
   <li><a href="#launch-of-printing">Launch of printing</a></li>
  </ul>
@@ -118,7 +118,7 @@ Overview of existing solutions
 
 ### Braille e-Book
 
-! [Modeling the concept by Yanko Design] (img / Braille_E-Book.jpg "Modeling the concept by Yanko Design") |
+![Modeling the concept by Yanko Design](img/Braille_E-Book.jpg "Modélisation du concept par Yanko Design") |
 --- |
 * Modeling concept by Yanko Design * |
 
@@ -126,7 +126,7 @@ A Braille e-Book is a stand-alone Braille display capable of displaying the equi
 
 ### Refreshable Braille display
 
-! [Refreshable Braille display, the Tactis100] (img / Braille-Beach.jpg "") |
+![Refreshable Braille display, the Tactis100](img/Plage-Braille.jpg "") |
 --- |
 * Example of a refreshable Braille display, the Tactis100 * |
 
@@ -136,8 +136,8 @@ In July 2015, Korea's Cheonan-Si launched its first 100-character Braille model,
 
 ### Lumipocket 3D
 
-<! -! [3D model of a Braille plate to print] (img/Lumi_3D_print.jpg=320x280 "") | ->
-<img src="img/Lumi_3D_print.jpg" height = "280" width = "320" alt = "3D model of a Braille plate to print" /> |
+<!-- ![3D model of a Braille plate to print](img/Lumi_3D_print.jpg =320x280 "") | -->
+<img src="img/Lumi_3D_print.jpg" height="280" width="320" alt="3D model of a Braille plate to print" /> |
 --- |
 * 3D model of a Braille plate to print * |
 
@@ -147,9 +147,9 @@ This principle, however, poses the problem of the amount of raw material used fo
 
 ### Braille embossing
 
-! [Attractive looking telescopic printer](img/Printing_Braille_a_design.jpg) |
+![Attractive looking telescopic printer](img/Printing_Braille_a_design.jpg "") |
 --- |
-* SimCheong Braille Printer and Scanner Concept * |
+*SimCheong Braille Printer and Scanner Concept * |
 
 Inspired by a Korean story, this appealing A6-A4 telescopic printer has a simple goal: to make computers more accessible to the visually impaired.
 
@@ -157,8 +157,8 @@ Unfortunately, the artist at the origin of this concept regretted in 2012 that i
 
 ### Braigo
 
-<! -![Braigo, Lego Mindstorm Assembly Printing Braille](img/Braigo.jpg "") | ->
-<img src = "img / Braigo.jpg" height = "341" width = "512" alt = "Braigo, Lego Mindstorm assembly printing Braille]" /> |
+<!-- ![Braigo, Lego Mindstorm Assembly Printing Braille](img/Braigo.jpg "") | -->
+<img src="img/Braigo.jpg" height="341" width="512" alt="Braigo, Lego Mindstorm assembly printing Braille]" /> |
 --- |
 * Braigo, Lego Mindstorm assembly printing Braille * |
 
@@ -172,7 +172,7 @@ The young inventor has since worked on new models.
 
 ### Basic-D v4
 
-! [Basic-D v4] (img / Basic-D_v4.jpg "") |
+![Basic-D v4](img/Basic-D_v4.jpg "") |
 --- |
 * Basic-D v4, Braille printer example from the market * |
 
@@ -182,7 +182,7 @@ For $ 2,495, it has a performance of 100 characters per second.
 
 ### 3D printed Braille board
 
-! [BRAVE_COVE] (img / BRAVE_COVE_1.jpg "")! [BRAVE_COVE] (img / BRAVE_COVE_2.jpg "") |
+![BRAVE_COVE](img/BRAVE_COVE_1.jpg "") ![BRAVE_COVE](img/BRAVE_COVE_2.jpg "") |
 --- |
 * BRAVE and COVE Projects, Braille Beach Template Extracts Printed * |
 
@@ -199,7 +199,7 @@ The Belgian association Braillepost intends to play the intermediary for any Bra
 Reminder on the use of a Braille tablet
 ---
 
-<img src = "img / IMG_20161019_140345.jpg" height = "640" width = "480" title = "Traditional Braille Writing Pad" alt = "Traditional Braille Writing Pad, Sheet, Pad and Needle" /> |
+<img src="img/IMG_20161019_140345.jpg" height="640" width="480" title="Tablette d'écriture Braille traditionnelle" alt="Traditional Braille Writing Pad, Sheet, Pad and Needle" /> |
 --- |
 * Traditional Braille writing pad, foil, ruler and needle * |
 
@@ -235,8 +235,8 @@ We note that precision is important. The goal is to produce hollows of half a mi
 The 2016 Fabrikarium
 ---
 
-<! -! [MyHumanKit and Airbus Group Fabrikarium Poster] (img / couv-fabrikarium.jpeg = 480x640 "MyHumanKit and Airbus Group Fabrikarium Poster") | ->
-<img src = "img / couv-fabrikarium.jpeg" height = "640" width = "480" title = "Fabrikarium poster from MyHumanKit and Airbus Group" alt = "Fabrikarium poster from MyHumanKit and Airbus Group" /> |
+<!-- ![MyHumanKit and Airbus Group Fabrikarium Poster](img/couv-fabrikarium.jpeg =480x640 "Affiche du Fabrikarium de MyHumanKit et Airbus Group") | -->
+<img src="img/couv-fabrikarium.jpeg" height="640" width="480" title="Fabrikarium poster from MyHumanKit and Airbus Group" alt="Fabrikarium poster from MyHumanKit and Airbus Group" /> |
 --- |
 * Poster of the Fabrikarium 2016 * |
 
@@ -315,8 +315,8 @@ A first idea, which makes it possible to obtain a correct embossing, is to use d
 The adaptable tip
 ---
 
-<! -! [Tip on nozzle] (img / 20161021_093329.jpg = 640x360 "Needle tip on nozzle") | ->
-<img src = "img / 20161021_093329.jpg" height = "360" width = "640" title = "Needle tip on nozzle" alt = "Tip on nozzle" /> |
+<!--![Tip on nozzle](img/20161021_093329.jpg =640x360 "Embout pointeau sur buse") |-->
+<img src="img/20161021_093329.jpg" height="360" width="640" title = "Needle tip on nozzle" alt = "Tip on nozzle" /> |
 --- |
 * Needle tip mounted on 3D printer nozzle (delta) * |
 
@@ -328,8 +328,8 @@ To work in a more sustainable way, we recommend using a tip, itself printed in 3
 
 The idea was to adapt or copy the needle used by the Braillists, then to mount it on the 3D printer so that it becomes "Braillist" in turn. To do this, we took inspiration from a standard Braille tablet and needle.
 
-<! -! [Stamped_Terminal] (img / 20161021_093451.jpg = 640x360 "Printed tip") | ->
-<img src = "img / 20161021_093451.jpg" height = "360" width = "640" title = "Printed toe" alt = "Printed toe" /> |
+<!-- ![Finished tip](img/20161021_093451.jpg =640x360 "Embout imprimé") | -->
+<img src="img/20161021_093451.jpg" height="360" width="640" title = "Printed toe" alt = "Printed toe"  /> |
 --- |
 * Printed tip seen from 3/4 top * |
 
@@ -343,8 +343,8 @@ The protruding tip must be filed, however, to be rounded, so as not to pierce th
 Embossing material
 ---
 
-<! -! [Numerous_essents] (img / 20161020_141323.jpg = 640x360 "Numerous_essays") | ->
-<img src = "img / 20161020_141323.jpg" height = "360" width = "640" title = "Many_essential" alt = "Many_essential" /> |
+<!-- ![Many tests](img/20161020_141323.jpg =640x360 "Nombreux_essais") | -->
+<img src="img/20161020_141323.jpg" height="360" width="640" title="many tests" alt="many tests" /> |
 --- |
 * "Shots" of embossing tests * |
 
@@ -400,15 +400,16 @@ It is now possible to start Braille printing, validating your entry.
 
 It is recommended to keep the sheet to be printed so that it does not move during printing, but watch out for the fingers!
 
-<! -! [Attention_to_fingers] (img / 20161020_175141_.jpg = 480x640 "Be careful of the fingers!") | ->
-<img src = "img / 20161020_175141_.jpg" height = "640" width = "480" title = "Be careful with fingers!" alt = "Attention_aux_digts" /> |
+<!-- ![Watch your fingers](img/20161020_175141_.jpg =480x640 "Watch your fingers !") | -->
+<img src="img/20161020_175141_.jpg" height="640" width="480" title="Watch your fingers !" alt="Watch your fingers" /> |
 --- |
-* Launch printing, watch out for fingers! * |
+* Launching embossing, watch your fingers! * |
+
 
 Demo video
 ===
 
-[Click here to see an animated GIF print] (img / 20161020_VIDEO_FABRIKARIUM_320.gif).
+[Click here to see an animated GIF print](img/20161020_VIDEO_FABRIKARIUM_320.gif).
 
 Optimizations
 ===

@@ -123,7 +123,8 @@ $(document).ready( function() {
 
 			// Check if char exists in map 
 			if(!latinToBraille.has(char.toLowerCase())) {
-				throw new Error('Character ' + char + ' was not translated in braille.')	
+				console.log('Character ' + char + ' was not translated in braille.');
+				continue;
 			}
 			
 			let indices = latinToBraille.get(char);

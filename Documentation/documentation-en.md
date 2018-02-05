@@ -6,11 +6,11 @@ Fabrikarium 2016 : [MyHumanKit](http://myhumankit.org/), Airbus Group
 CC-By-SA - [FLOSS Manuals](https://flossmanuals.net) - Simon Descarpentries
 
 <ul>
- <li><a href="#Introduction">Introduction</a></li>
- <li><a href="#Contexte">Context</a>
+ <li><a href="#introduction">Introduction</a></li>
+ <li><a href="#contexte">Context</a>
  <ul>
-  <li><a href="#Reprap">RepRaps</a></li>
-  <li><a href="#Fablab">FabLabs</a></li>
+  <li><a href="#reprap">RepRaps</a></li>
+  <li><a href="#fablab">FabLabs</a></li>
   <li><a href="#the-e-nable-network">e-Nable Networks</a></li>
   <li><a href="#overview-of-existing-solutions">Overview of existing solutions</a>
   <ul>

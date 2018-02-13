@@ -387,10 +387,12 @@ $(document).ready( function() {
 
 	let importSVG = (event)=>{
 		svg = paper.project.importSVG(event.target.result)
+		svg.strokeScaling = false
+		svg.pivot = svg.bounds.topLeft
 		brailleToGCode()
 		let mmPerPixels =  paper.view.bounds.width / braille.paperWidth
 		console.log(mmPerPixels)
-		svg.scale = mmPerPixels
+		svg.scaling = mmPerPixels
 		paper.project.activeLayer.addChild(svg)
 		svg.sendToBack()
 	}

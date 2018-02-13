@@ -23,6 +23,8 @@ $(document).ready( function() {
 		goToZero: false, 
 		inverseX: false, 
 		inverseY: false, 
+		mirrorX: false, 
+		mirrorY: false, 
 		language: "6 dots"
 	};
 
@@ -179,7 +181,7 @@ $(document).ready( function() {
 			}
 
 			// add gcode
-			gcode += gcodeMoveTo(gx, gy)
+			gcode += gcodeMoveTo(braille.mirrorX ? -gx : gx, braille.mirrorY ? -gy : gy)
 
 			// Draw braille char and compute gcode
 			let charGroup = new Group();
@@ -209,7 +211,7 @@ $(document).ready( function() {
 								gy += braille.paperHeight;
 							}
 
-							gcode += gcodeMoveTo(gx, gy)
+							gcode += gcodeMoveTo(braille.mirrorX ? -gx : gx, braille.mirrorY ? -gy : gy)
 						}
 						
 						// move printer head
@@ -302,6 +304,8 @@ $(document).ready( function() {
 	createController('delta', null, null, null, printerSettingsFolder);
 	createController('inverseX', null, null, null, printerSettingsFolder);
 	createController('inverseY', null, null, null, printerSettingsFolder);
+	createController('mirrorX', null, null, null, printerSettingsFolder);
+	createController('mirrorY', null, null, null, printerSettingsFolder);
 	createController('goToZero', null, null, null, printerSettingsFolder);
 
 	printerSettingsFolder.open();

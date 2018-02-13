@@ -7,7 +7,24 @@ $(document).ready( function() {
 	paper.setup(canvas);
 
 	// global object to store all parameters: braille dimensions are standards
-	let braille = { marginWidth: 20, marginHeight: 20, paperWidth: 170, paperHeight: 125, letterWidth: 2.54, dotRadius: 1.25, letterPadding: 3.75, linePadding: 5.3, headDownPosition: -2.0, headUpPosition: 10, speed: 5000, delta: false, language: "6 dots" };
+	let braille = { 
+		marginWidth: 20, 
+		marginHeight: 20, 
+		paperWidth: 170, 
+		paperHeight: 125, 
+		letterWidth: 2.54, 
+		dotRadius: 1.25, 
+		letterPadding: 3.75, 
+		linePadding: 5.3, 
+		headDownPosition: -2.0, 
+		headUpPosition: 10, 
+		speed: 5000, 
+		delta: false, 
+		goToZero: false, 
+		inverseX: false, 
+		inverseY: false, 
+		language: "6 dots"
+	};
 
 	let pixelMillimeterRatio = null;
 
@@ -27,11 +44,15 @@ $(document).ready( function() {
 		return 'G90;\r\n'
 	}
 
+	let gcodeResetPosition = function(X, Y, Z) {
+		return 'G92' + gcodePosition(X, Y, Z);
+	}
+
 	let gcodeSetSpeed = function(speed) {
 		return 'G1 F' + speed + ';\r\n'
 	}
 
-	let gcodeTo = function(X, Y, Z) {
+	let gcodePosition = function(X, Y, Z) {
 		let code = ''
 		if(X == null && Y == null && Z == null) {
 			throw new Error("Null position when moving")
@@ -50,11 +71,11 @@ $(document).ready( function() {
 	}
 
 	let gcodeGoTo = function(X, Y, Z) {
-		return 'G0' + gcodeTo(X, Y, Z)
+		return 'G0' + gcodePosition(X, Y, Z)
 	}
 
 	let gcodeMoveTo = function(X, Y, Z) {
-		return 'G1' + gcodeTo(X, Y, Z)
+		return 'G1' + gcodePosition(X, Y, Z)
 	}
 
 	// Draw braille and generate gcode
@@ -85,8 +106,12 @@ $(document).ready( function() {
 		// Start GCode
 
 		gcode = gcodeSetAbsolutePositioning()
+		// gcode += gcodeResetPosition(0, 0, 0)
 		gcode += gcodeSetSpeed(braille.speed)
-		gcode += gcodeMoveTo(null, null, headUpPosition)
+		if(braille.goToZero) {
+			gcode += gcodeMoveTo(0, 0, 0)
+		}
+		gcode += gcodeMoveTo(0, 0, headUpPosition)
 
 		// initialize position: top left + margin
 		let currentX = braille.marginWidth;
@@ -143,13 +168,13 @@ $(document).ready( function() {
 			}
 
 			// compute corresponding printer coordinates
-			let gx = braille.paperWidth - currentX;
+			let gx = braille.inverseX ? -currentX : braille.paperWidth - currentX;
 			let gy = -currentY; 				// canvas y axis goes downward, printers goes upward
 
 			if(braille.delta) { 				// delta printers have their origin in the center of the sheet
 				gx -= braille.paperWidth / 2;
 				gy += braille.paperHeight / 2;
-			} else {
+			} else if(!braille.inverseY) {
 				gy += braille.paperHeight;
 			}
 
@@ -174,13 +199,13 @@ $(document).ready( function() {
 						// Compute corresponding gcode position
 						if(x > 0 || y > 0) {
 
-							gx = braille.paperWidth - px;
+							gx = braille.inverseX ? - px : braille.paperWidth - px;
 							gy = -py;						// canvas y axis goes downward, printers goes upward
 
 							if(braille.delta) { 			// delta printers have their origin in the center of the sheet
 								gx -= braille.paperWidth / 2;
 								gy += braille.paperHeight / 2;
-							} else {
+							} else if(!braille.inverseY){
 								gy += braille.paperHeight;
 							}
 
@@ -207,7 +232,10 @@ $(document).ready( function() {
 				break;
 			}
 		}
-
+		gcode += gcodeMoveTo(0, 0, headUpPosition)
+		if(braille.goToZero) {
+			gcode += gcodeMoveTo(0, 0, 0)
+		}
 		$("#gcode").val(gcode)
 	}
 
@@ -267,11 +295,15 @@ $(document).ready( function() {
 	charDimensionsFolder.open();
 	
 	let printerSettingsFolder = gui.addFolder('Printer settings');
-	createController('headDownPosition', -10, 30, null, printerSettingsFolder);
-	createController('headUpPosition', -10, 30, null, printerSettingsFolder);
+	createController('headDownPosition', -150, 150, null, printerSettingsFolder);
+	createController('headUpPosition', -150, 150, null, printerSettingsFolder);
 	createController('speed', 0, 6000, null, printerSettingsFolder);
 
 	createController('delta', null, null, null, printerSettingsFolder);
+	createController('inverseX', null, null, null, printerSettingsFolder);
+	createController('inverseY', null, null, null, printerSettingsFolder);
+	createController('goToZero', null, null, null, printerSettingsFolder);
+
 	printerSettingsFolder.open();
 
 	var languageList = []

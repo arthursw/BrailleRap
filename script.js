@@ -21,8 +21,8 @@ $(document).ready( function() {
 		speed: 5000, 
 		delta: false, 
 		goToZero: false, 
-		inverseX: false, 
-		inverseY: false, 
+		invertX: false, 
+		invertY: false, 
 		mirrorX: false, 
 		mirrorY: false, 
 		svgStep: 10,
@@ -82,8 +82,10 @@ $(document).ready( function() {
 		return 'G1' + gcodePosition(X, Y, Z)
 	}
 
-	let dotAt = (point, gcode)=> {
-		gcode.code += gcodeMoveTo(braille.mirrorX ? -point.x : point.x, braille.mirrorY ? -point.y : point.y)
+	let dotAt = (point, gcode, bounds)=> {
+		let px = braille.invertX ? -point.x : braille.paperWidth - point.x;
+		let py = braille.invertY ? -point.y : braille.paperHeight - point.y;
+		gcode.code += gcodeMoveTo(braille.mirrorX ? -px : px, braille.mirrorY ? -py : py)
 		
 		// move printer head
 		gcode.code += gcodeMoveTo(null, null, braille.headDownPosition)
@@ -94,7 +96,7 @@ $(document).ready( function() {
 		return (item.strokeWidth > 0 && item.strokeColor != null) || item.fillColor != null;
 	}
 
-	let plotItem = (item, gcode) => {
+	let plotItem = (item, gcode, bounds) => {
 		if(!item.visible) {
 			return
 		}
@@ -112,7 +114,7 @@ $(document).ready( function() {
 			let path = item
 			if(path.segments != null) {
 				for(let i=0 ; i<path.length ; i+=braille.svgStep) {
-					dotAt(path.getPointAt(i), gcode)
+					dotAt(path.getPointAt(i), gcode, bounds)
 				}
 			}
 		}
@@ -120,13 +122,13 @@ $(document).ready( function() {
 			return
 		}
 		for(let child of item.children) {
-			plotItem(child, gcode)
+			plotItem(child, gcode, bounds)
 		}
 	}
 
 	// Generates code
 	let svgToGCode = function(svg, gcode) {
-		plotItem(svg, gcode)
+		plotItem(svg, gcode, svg.bounds)
 	}
 
 	// Draw braille and generate gcode
@@ -219,13 +221,13 @@ $(document).ready( function() {
 			}
 
 			// compute corresponding printer coordinates
-			let gx = braille.inverseX ? -currentX : braille.paperWidth - currentX;
+			let gx = braille.invertX ? -currentX : braille.paperWidth - currentX;
 			let gy = -currentY; 				// canvas y axis goes downward, printers goes upward
 
 			if(braille.delta) { 				// delta printers have their origin in the center of the sheet
 				gx -= braille.paperWidth / 2;
 				gy += braille.paperHeight / 2;
-			} else if(!braille.inverseY) {
+			} else if(!braille.invertY) {
 				gy += braille.paperHeight;
 			}
 
@@ -250,13 +252,13 @@ $(document).ready( function() {
 						// Compute corresponding gcode position
 						if(x > 0 || y > 0) {
 
-							gx = braille.inverseX ? - px : braille.paperWidth - px;
+							gx = braille.invertX ? - px : braille.paperWidth - px;
 							gy = -py;						// canvas y axis goes downward, printers goes upward
 
 							if(braille.delta) { 			// delta printers have their origin in the center of the sheet
 								gx -= braille.paperWidth / 2;
 								gy += braille.paperHeight / 2;
-							} else if(!braille.inverseY){
+							} else if(!braille.invertY){
 								gy += braille.paperHeight;
 							}
 
@@ -362,8 +364,8 @@ $(document).ready( function() {
 	createController('svgStep', 0, 100, null, printerSettingsFolder);
 
 	createController('delta', null, null, null, printerSettingsFolder);
-	createController('inverseX', null, null, null, printerSettingsFolder);
-	createController('inverseY', null, null, null, printerSettingsFolder);
+	createController('invertX', null, null, null, printerSettingsFolder);
+	createController('invertY', null, null, null, printerSettingsFolder);
 	createController('mirrorX', null, null, null, printerSettingsFolder);
 	createController('mirrorY', null, null, null, printerSettingsFolder);
 	createController('goToZero', null, null, null, printerSettingsFolder);

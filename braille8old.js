@@ -26,7 +26,7 @@ languages['old 8 dots'] = {
 			3: 8
 		}
 	},
-	numberPrefix6: [4, 5, 7, 8],
+	numberPrefix: [4, 5, 7, 8],
 	latinToBraille: {
 		"!" : [2,3,4,6],
 		'"' : [5],

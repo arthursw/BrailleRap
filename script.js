@@ -1,5 +1,5 @@
 paper.install(window);
-
+let svg = null;
 $(document).ready( function() {
 
 	let canvas = document.getElementById("paperCanvas")
@@ -25,6 +25,7 @@ $(document).ready( function() {
 		inverseY: false, 
 		mirrorX: false, 
 		mirrorY: false, 
+		svgStep: 10,
 		language: "6 dots"
 	};
 
@@ -32,6 +33,7 @@ $(document).ready( function() {
 
 	let text = '';
 	let gcode = '';
+	
 
 	// Replace a char at index in a string
 	function replaceAt(s, n, t) {
@@ -78,6 +80,53 @@ $(document).ready( function() {
 
 	let gcodeMoveTo = function(X, Y, Z) {
 		return 'G1' + gcodePosition(X, Y, Z)
+	}
+
+	let dotAt = (point, gcode)=> {
+		gcode.code += gcodeMoveTo(braille.mirrorX ? -point.x : point.x, braille.mirrorY ? -point.y : point.y)
+		
+		// move printer head
+		gcode.code += gcodeMoveTo(null, null, braille.headDownPosition)
+		gcode.code += gcodeMoveTo(null, null, braille.headUpPosition)
+	}
+
+	let itemMustBeDrawn = (item) => {
+		return (item.strokeWidth > 0 && item.strokeColor != null) || item.fillColor != null;
+	}
+
+	let plotItem = (item, gcode) => {
+		if(!item.visible) {
+			return
+		}
+		let matrix = item.globalMatrix
+		if(item.className == 'Shape') {
+			let shape = item
+			if(itemMustBeDrawn(shape)) {
+				let path = shape.toPath(true)
+				item.parent.addChildren(item.children)
+				item.remove()
+				item = path
+			}
+		}
+		if((item.className == 'Path' || item.className == 'CompoundPath') && item.strokeWidth > 0) {
+			let path = item
+			if(path.segments != null) {
+				for(let i=0 ; i<path.length ; i+=braille.svgStep) {
+					dotAt(path.getPointAt(i), gcode)
+				}
+			}
+		}
+		if(item.children == null) {
+			return
+		}
+		for(let child of item.children) {
+			plotItem(child, gcode)
+		}
+	}
+
+	// Generates code
+	let svgToGCode = function(svg, gcode) {
+		plotItem(svg, gcode)
 	}
 
 	// Draw braille and generate gcode
@@ -234,6 +283,16 @@ $(document).ready( function() {
 				break;
 			}
 		}
+
+		// Print the SVG
+		if(svg != null) {
+			let gcodeObject = {
+				code: gcode
+			}
+			svgToGCode(svg, gcodeObject)
+			gcode = gcodeObject.code
+		}
+
 		gcode += gcodeMoveTo(0, 0, headUpPosition)
 		if(braille.goToZero) {
 			gcode += gcodeMoveTo(0, 0, 0)
@@ -300,6 +359,7 @@ $(document).ready( function() {
 	createController('headDownPosition', -150, 150, null, printerSettingsFolder);
 	createController('headUpPosition', -150, 150, null, printerSettingsFolder);
 	createController('speed', 0, 6000, null, printerSettingsFolder);
+	createController('svgStep', 0, 100, null, printerSettingsFolder);
 
 	createController('delta', null, null, null, printerSettingsFolder);
 	createController('inverseX', null, null, null, printerSettingsFolder);
@@ -319,6 +379,45 @@ $(document).ready( function() {
 		initializeLatinToBraille();
 		brailleToGCode();
 	});
+
+	// Import SVG to add shapes
+	let divJ = $("<input data-name='file-selector' type='file' class='form-control' name='file[]'  accept='image/svg+xml'/>")
+
+	let importSVG = (event)=>{
+		svg = paper.project.importSVG(event.target.result)
+		brailleToGCode()
+		let mmPerPixels =  paper.view.bounds.width / braille.paperWidth
+		console.log(mmPerPixels)
+		svg.scale = mmPerPixels
+		paper.project.activeLayer.addChild(svg)
+		svg.sendToBack()
+	}
+
+	let handleFileSelect = (event) => {
+
+		let files = event.dataTransfer != null ? event.dataTransfer.files : event.target.files
+
+		for (let i = 0; i < files.length; i++) {
+			let file = files.item(i)
+			
+			let imageType = /^image\//
+
+			if (!imageType.test(file.type)) {
+				continue
+			}
+
+			let reader = new FileReader()
+			reader.onload = (event)=> importSVG(event)
+			reader.readAsText(file)
+		}
+	}
+
+	let button = gui.add({importSVG: ()=> divJ.click() }, 'importSVG')
+
+	$(button.domElement).append(divJ)
+	divJ.hide()
+	divJ.change(handleFileSelect)
+
 
 	// Add download button (to get a text file of the gcode)
 	gui.add({saveGCode: function(){

@@ -1,5 +1,7 @@
 paper.install(window);
 let svg = null;
+let svgButton = null;
+let divJ = null
 $(document).ready( function() {
 
 	let canvas = document.getElementById("paperCanvas")
@@ -25,7 +27,11 @@ $(document).ready( function() {
 		invertY: false, 
 		mirrorX: false, 
 		mirrorY: false, 
-		svgStep: 10,
+		svgStep: 2,
+		svgDots: true,
+		svgPosX: 0,
+		svgPosY: 0,
+		// svgScale: 1,
 		language: "6 dots"
 	};
 
@@ -62,13 +68,13 @@ $(document).ready( function() {
 			throw new Error("Null position when moving")
 		}
 		if(X != null) {
-			code += ' X' + X
+			code += ' X' + X.toFixed(2)
 		}
 		if(Y != null) {
-			code += ' Y' + Y
+			code += ' Y' + Y.toFixed(2)
 		}
 		if(Z != null) {
-			code += ' Z' + Z
+			code += ' Z' + Z.toFixed(2)
 		}
 		code += ';\r\n'
 		return code
@@ -82,14 +88,17 @@ $(document).ready( function() {
 		return 'G1' + gcodePosition(X, Y, Z)
 	}
 
-	let dotAt = (point, gcode, bounds)=> {
+	// draw SVG
+	let dotAt = (point, gcode, bounds, lastDot)=> {
 		let px = braille.invertX ? -point.x : braille.paperWidth - point.x;
 		let py = braille.invertY ? -point.y : braille.paperHeight - point.y;
 		gcode.code += gcodeMoveTo(braille.mirrorX ? -px : px, braille.mirrorY ? -py : py)
 		
 		// move printer head
 		gcode.code += gcodeMoveTo(null, null, braille.headDownPosition)
-		gcode.code += gcodeMoveTo(null, null, braille.headUpPosition)
+		if(braille.svgDots || lastDot) {
+			gcode.code += gcodeMoveTo(null, null, braille.headUpPosition)
+		}
 	}
 
 	let itemMustBeDrawn = (item) => {
@@ -114,7 +123,7 @@ $(document).ready( function() {
 			let path = item
 			if(path.segments != null) {
 				for(let i=0 ; i<path.length ; i+=braille.svgStep) {
-					dotAt(path.getPointAt(i), gcode, bounds)
+					dotAt(path.getPointAt(i), gcode, bounds, i + braille.svgStep >= path.length)
 				}
 			}
 		}
@@ -179,6 +188,7 @@ $(document).ready( function() {
 		let isWritingNumber = false;
 
 		let textCopy = '' + text
+		let textGroup = new Group()
 
 		// iterate through each char: draw braille code and add gcode
 		for(let i = 0 ; i < textCopy.length ; i++) {
@@ -235,7 +245,8 @@ $(document).ready( function() {
 			gcode += gcodeMoveTo(braille.mirrorX ? -gx : gx, braille.mirrorY ? -gy : gy)
 
 			// Draw braille char and compute gcode
-			let charGroup = new Group();
+			let charGroup = new Group()
+			textGroup.addChild(charGroup)
 			
 			// Iterate through all indices
 			for(let y = 0 ; y < (is8dot ? 4 : 3) ; y++) {
@@ -285,13 +296,18 @@ $(document).ready( function() {
 				break;
 			}
 		}
+		
+		let mmPerPixels =  paper.view.bounds.width / braille.paperWidth
 
 		// Print the SVG
 		if(svg != null) {
 			let gcodeObject = {
 				code: gcode
 			}
+			
+			svg.scaling = 1 / mmPerPixels
 			svgToGCode(svg, gcodeObject)
+			svg.scaling = mmPerPixels
 			gcode = gcodeObject.code
 		}
 
@@ -300,6 +316,14 @@ $(document).ready( function() {
 			gcode += gcodeMoveTo(0, 0, 0)
 		}
 		$("#gcode").val(gcode)
+		
+		paper.project.activeLayer.addChild(svg)
+		let printBounds = textGroup.bounds
+		if(svg != null) {
+			printBounds = printBounds.unite(svg.bounds)
+		}
+		printBounds = printBounds.scale(1 / mmPerPixels)
+		$('#print-size').text(printBounds.width.toFixed(0) + ' x ' + printBounds.height.toFixed(0))
 	}
 
 	brailleToGCode()
@@ -336,39 +360,41 @@ $(document).ready( function() {
 
 	dat.GUI.toggleHide = () => {}
 
-	let createController = function(name, min, max, callback, folder) {
+	let createController = function(name, min, max, callback, folder, buttonName) {
 		let f = folder != null ? folder : gui
 		let controller = f.add(braille, name, min, max);
 		controller.onChange(callback != null ? callback : brailleToGCode);
 		controller.onFinishChange(callback != null ? callback : brailleToGCode);
+		if(buttonName != null) {
+			controller.name(buttonName)
+		}
+		return controller
 	}
 
 	let paperDimensionsFolder = gui.addFolder('Paper dimensions');
-	createController('paperWidth', 1, 1000, null, paperDimensionsFolder);
-	createController('paperHeight', 1, 1000, null, paperDimensionsFolder);
-	createController('marginWidth', 0, 100, null, paperDimensionsFolder);
-	createController('marginHeight', 0, 100, null, paperDimensionsFolder);
+	createController('paperWidth', 1, 1000, null, paperDimensionsFolder, 'Paper width');
+	createController('paperHeight', 1, 1000, null, paperDimensionsFolder, 'Paper height');
+	createController('marginWidth', 0, 100, null, paperDimensionsFolder, 'Margin width');
+	createController('marginHeight', 0, 100, null, paperDimensionsFolder, 'Margin height');
 	paperDimensionsFolder.open();
 
 	let charDimensionsFolder = gui.addFolder('Char dimensions');
-	createController('letterWidth', 1, 100, null, charDimensionsFolder);
-	createController('dotRadius', 1, 30, null, charDimensionsFolder);
-	createController('letterPadding', 1, 30, null, charDimensionsFolder);
-	createController('linePadding', 1, 30, null, charDimensionsFolder);
+	createController('letterWidth', 1, 100, null, charDimensionsFolder, 'Letter width');
+	createController('dotRadius', 1, 30, null, charDimensionsFolder, 'Dot radius');
+	createController('letterPadding', 1, 30, null, charDimensionsFolder, 'Letter padding');
+	createController('linePadding', 1, 30, null, charDimensionsFolder, 'Line padding');
 	charDimensionsFolder.open();
 	
 	let printerSettingsFolder = gui.addFolder('Printer settings');
-	createController('headDownPosition', -150, 150, null, printerSettingsFolder);
-	createController('headUpPosition', -150, 150, null, printerSettingsFolder);
-	createController('speed', 0, 6000, null, printerSettingsFolder);
-	createController('svgStep', 0, 100, null, printerSettingsFolder);
-
-	createController('delta', null, null, null, printerSettingsFolder);
-	createController('invertX', null, null, null, printerSettingsFolder);
-	createController('invertY', null, null, null, printerSettingsFolder);
-	createController('mirrorX', null, null, null, printerSettingsFolder);
-	createController('mirrorY', null, null, null, printerSettingsFolder);
-	createController('goToZero', null, null, null, printerSettingsFolder);
+	createController('headDownPosition', -150, 150, null, printerSettingsFolder, 'Head down pos.');
+	createController('headUpPosition', -150, 150, null, printerSettingsFolder, 'Head up pos.');
+	createController('speed', 0, 6000, null, printerSettingsFolder, 'Speed');
+	createController('delta', null, null, null, printerSettingsFolder, 'Delta printer');
+	createController('invertX', null, null, null, printerSettingsFolder, 'Negative X');
+	createController('invertY', null, null, null, printerSettingsFolder, 'Negative Y');
+	createController('mirrorX', null, null, null, printerSettingsFolder, 'Mirror X');
+	createController('mirrorY', null, null, null, printerSettingsFolder, 'Mirror Y');
+	createController('goToZero', null, null, null, printerSettingsFolder, 'Go to zero');
 
 	printerSettingsFolder.open();
 
@@ -380,25 +406,23 @@ $(document).ready( function() {
 	createController('language', languageList, null, function() {
 		initializeLatinToBraille();
 		brailleToGCode();
-	});
+	}, null, 'Language');
 
 	// Import SVG to add shapes
-	let divJ = $("<input data-name='file-selector' type='file' class='form-control' name='file[]'  accept='image/svg+xml'/>")
+	divJ = $("<input data-name='file-selector' type='file' class='form-control' name='file[]'  accept='image/svg+xml'/>")
 
-	let importSVG = (event)=>{
+	let importSVG = (event)=> {
+		svgButton.name('Clear SVG')
 		svg = paper.project.importSVG(event.target.result)
 		svg.strokeScaling = false
 		svg.pivot = svg.bounds.topLeft
-		brailleToGCode()
 		let mmPerPixels =  paper.view.bounds.width / braille.paperWidth
-		console.log(mmPerPixels)
 		svg.scaling = mmPerPixels
-		paper.project.activeLayer.addChild(svg)
+		brailleToGCode()
 		svg.sendToBack()
 	}
 
 	let handleFileSelect = (event) => {
-
 		let files = event.dataTransfer != null ? event.dataTransfer.files : event.target.files
 
 		for (let i = 0; i < files.length; i++) {
@@ -415,13 +439,27 @@ $(document).ready( function() {
 			reader.readAsText(file)
 		}
 	}
+	let svgFolder = gui.addFolder('SVG');
+	svgButton = svgFolder.add({importSVG: ()=> {
+		if(svg != null) {
+			svgButton.name('Import SVG')
+			svg.remove()
+			svg = null
+			brailleToGCode()
+		} else {
+			divJ.click()
+		}
+		
+	} }, 'importSVG')
+	svgButton.name('Import SVG')
 
-	let button = gui.add({importSVG: ()=> divJ.click() }, 'importSVG')
-
-	$(button.domElement).append(divJ)
+	divJ.click((event)=>{
+		event.stopPropagation()
+		return -1;
+	})
+	$(svgButton.domElement).append(divJ)
 	divJ.hide()
 	divJ.change(handleFileSelect)
-
 
 	// Add download button (to get a text file of the gcode)
 	gui.add({saveGCode: function(){
@@ -434,7 +472,23 @@ $(document).ready( function() {
 		a.click(); // Trigger a click on the element
 		a.remove();
 
-	}}, 'saveGCode')
+	}}, 'saveGCode').name('Save GCode')
+
+	createController('svgStep', 0, 100, null, svgFolder, 'SVG step');
+	createController('svgDots', null, null , null, svgFolder, 'SVG dots');
+	let updateSVGPositionX = (value) => {
+		let mmPerPixels =  paper.view.bounds.width / braille.paperWidth
+		svg.position.x = value * mmPerPixels
+		brailleToGCode()
+	}
+	let updateSVGPositionY = (value) => {
+		let mmPerPixels =  paper.view.bounds.width / braille.paperWidth
+		svg.position.y = value * mmPerPixels
+		brailleToGCode()
+	}
+	createController('svgPosX', -500, 500, updateSVGPositionX, svgFolder, 'SVG pos X');
+	createController('svgPosY', -500, 500, updateSVGPositionY, svgFolder, 'SVG pos Y');
+	// createController('svgScale', 0.05, 10, null, svgFolder, 'SVG scale');
 
 	// Update all when text changes
 	$('#latin').bind('input propertychange', function(event) {

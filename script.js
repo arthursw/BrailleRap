@@ -119,7 +119,7 @@ $(document).ready( function() {
 				item = path
 			}
 		}
-		if((item.className == 'Path' || item.className == 'CompoundPath') && item.strokeWidth > 0) {
+		if((item.className == 'Path' || item.className == 'CompoundPath') && item.strokeWidth > 0) {
 			let path = item
 			if(path.segments != null) {
 				for(let i=0 ; i<path.length ; i+=braille.svgStep) {
